@@ -17,13 +17,13 @@ if email == "teste@gmail.com":
 
         print("Você receberá um código  por chamada telefonica\n")
 
-        def random_generator(size=5, chars=string.ascii_uppercase + string.digits):
+        def random_generator(size=5, chars=string.ascii_uppercase + string.digits): # Função que gera os códigos de autenticação
             return ''.join(random.choice(chars) for _ in range(size))
 
         texto = random_generator()
         print(f"Código criado\nCódigo: {texto}")
 
-        cliente = Client(account_sid, auth_token)
+        cliente = Client(account_sid, auth_token) # Parte respónsavel por fazer a ligação ao usuario
 
         mensagem = f"""
         <Response>
@@ -40,9 +40,9 @@ if email == "teste@gmail.com":
             twiml=mensagem
         )
 
-        aut = input("Digite o código que recebeu na chamada telefonica: ")
+        aut = input("Digite o código que recebeu na chamada telefonica: ") # Pede a entrada do código ao usuario
 
-        if aut == texto:
+        if aut == texto: # Faz a comparação entre o código de autenticação gerado e o código inserido pelo usuario
             print("Usuario autenticado\n")
         else:
             print("Erro na autenticacao\n")
